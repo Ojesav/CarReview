@@ -33,7 +33,7 @@ public class HomeController implements Initializable {
     @FXML
     private JFXButton tataMotors;
 
-   
+    private AnchorPane CarsAnchor;
 	  
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -45,66 +45,37 @@ public class HomeController implements Initializable {
 	@FXML
 	public void marutiAction(ActionEvent e)
 	{
-	   try {
-		loadFXML("/FXML/Maruti.fxml","Maruti");
+	  
+		HomePageController.getInstance().createPage(CarsAnchor, "/FXML/Maruti.fxml");
 		
-	} catch (IOException e1) {
-		
-		e1.printStackTrace();
-	}
+	  
 	}
 	
 	 @FXML
 	 public void chevroletAction(ActionEvent event) {
 
-		 try {
-			loadFXML("/FXML/Chevrolet.fxml","Chevrolet");
-			
-		} catch (IOException e1) {
-			
-			e1.printStackTrace();
-		}
+		 HomePageController.getInstance().createPage(CarsAnchor, "/FXML/Chevrolet.fxml");
+		
 		 
 	  }
 
 	 @FXML
 	 public void hyundaiAction(ActionEvent event) {
 
-		   try {
-			loadFXML("/FXML/Hyundai.fxml","Hyundai");
-			
-		} catch (IOException e1) {
-			
-			e1.printStackTrace();
-		}
-	  
+		
+		 HomePageController.getInstance().createPage(CarsAnchor, "/FXML/Hyundai.fxml");
+		 	  
 	 }
 
 
 	  @FXML
 	  public void tataMotorsAction(ActionEvent event) {
 
-		   try {
-			loadFXML("/FXML/TataMotors.fxml","TataMotors");
-			
-		} catch (IOException e1) {
-			
-			e1.printStackTrace();
-		}
+		  HomePageController.getInstance().createPage(CarsAnchor, "/FXML/TataMotors.fxml");
+		   
 	   }
 	
 
-	public void loadFXML(String loc, String title) throws IOException
-	{
-		Parent root = FXMLLoader.load(getClass().getResource(loc));
-		Stage stage = new Stage(StageStyle.UNDECORATED);
-		stage.setScene(new Scene(root));
-		stage.setTitle(title);
-		stage.setX(491);
-		stage.setY(129);
-		stage.show();
-		
-	}
 	
 	
 }

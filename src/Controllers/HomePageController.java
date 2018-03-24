@@ -55,10 +55,22 @@ public class HomePageController implements Initializable {
 
     @FXML
     private JFXButton btnExit;
-    
-    User user;
+   
 	
 	AnchorPane home;
+	
+	private static HomePageController instance;
+	
+	public HomePageController()
+	{
+		instance = this;
+	}
+	
+	public static HomePageController getInstance()
+	{
+		return instance;
+	}	
+  
 	
 
 	@Override
@@ -69,16 +81,18 @@ public class HomePageController implements Initializable {
 	   toolBarRight.getChildren().add(rippler);
 	  
 	   openMenus();
-       createPage();
-       
-       user.textProperty().addListener((obs, oldText, newText) -> 
-       
-        welcome.setText("Welcome To"+newText));
+       createPage(home,"/FXML/HOME.fxml");
+      
+       setUsername(LoginController.getInstance().username());
+      
 	}
 
-	public HomePageController(User user) {
-        this.user = user;
-    }
+	
+	public void setUsername(String user)
+	{
+		this.welcome.setText("Welcome, "+user);
+	}
+	
 	
 
 	private void openMenus() {
@@ -112,11 +126,11 @@ public class HomePageController implements Initializable {
 		
 	}
 
-	public void createPage() {
+	public void createPage(AnchorPane homeN,String loc) {
 		
 		try {
-			home = FXMLLoader.load(getClass().getResource("/FXML/HOME.fxml"));
-			setNode(home);
+			homeN = FXMLLoader.load(getClass().getResource(loc));
+			setNode(homeN);
 		} catch (IOException e) {
 			
 			e.printStackTrace();

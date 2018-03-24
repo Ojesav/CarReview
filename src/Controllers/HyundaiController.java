@@ -8,13 +8,15 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
 public class HyundaiController implements Initializable {
 
 
-	 @FXML
+	    @FXML
 		private JFXButton back;
-
+	    AnchorPane CarInfo;
+	    
 		
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
@@ -25,7 +27,7 @@ public class HyundaiController implements Initializable {
 		@FXML 
 		public void backAction(ActionEvent e)
 		{
-			back.getScene().getWindow().hide();
+			HomePageController.getInstance().createPage(CarInfo, "/FXML/HOME.fxml");
 		}
 	
 }

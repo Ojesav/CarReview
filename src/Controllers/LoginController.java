@@ -46,10 +46,26 @@ public class LoginController implements Initializable{
 	    private DBHandler handler;
 	    private Connection connection;
 	    private java.sql.PreparedStatement pst;
-	    User user;
-	  
+	    private static LoginController instance;
 	    
-
+	    public LoginController()
+	    {
+	    	instance = this;
+	    }
+	    
+	    public static LoginController getInstance()
+	    {
+	    	return instance;
+	    }
+	    
+	    
+	    public String username()
+	    {
+	    	return username.getText();
+	    }
+	    
+	    
+	    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -63,15 +79,12 @@ public class LoginController implements Initializable{
 	}
 
 	
-	public LoginController(User user) {
-        this.user = user;
-    }
 	
 	
 	@FXML
 	public void loginAction(ActionEvent e)
 	{ 
-		 user.setText("Hello");
+		
 		
 		//loading bar
 		progress.setVisible(true);
@@ -103,9 +116,8 @@ public class LoginController implements Initializable{
 			    	
 			    	Stage home = new Stage();
 			    	try {
-			    		FXMLLoader firstLoader = new FXMLLoader(getClass().getResource("/FXML/HomePage.fxml"));
-						firstLoader.setController(new HomePageController(user));
-						Parent root = firstLoader.load();
+			    		
+						Parent root = FXMLLoader.load(getClass().getResource("/FXML/HomePage.fxml"));
 						
 					    Scene scene = new Scene(root);
 					    home.setScene(scene);

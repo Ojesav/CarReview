@@ -61,7 +61,6 @@ public class SignupController implements Initializable {
 	    private Connection connection;
 	    private DBHandler handler;
 	    private PreparedStatement pst;
-	    User user;
 	  
 	
 	@Override
@@ -129,9 +128,8 @@ public class SignupController implements Initializable {
     	 progress.setVisible(false);
     	
     	 Stage login = new Stage();
-    	 FXMLLoader firstLoader = new FXMLLoader(getClass().getResource("/FXML/LoginMain.fxml"));
-		 firstLoader.setController(new Controllers.LoginController(user));
-		 Parent root = firstLoader.load();
+    	 
+		 Parent root = FXMLLoader.load(getClass().getResource("/FXML/LoginMain.fxml"));
          Scene scene = new Scene(root);
          login.setScene(scene);
          login.show();

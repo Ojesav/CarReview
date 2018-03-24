@@ -34,44 +34,14 @@ public class MarutiController implements Initializable {
 	@FXML 
 	public void backAction(ActionEvent e)
 	{
-		back.getScene().getWindow().hide();
-	}
-
-	
-	public void setNode(Node node)
-	{
-		//MarutiAnchor.getChildren().clear();
-		MarutiAnchor.getChildren().add((Node) node);
 		
-		FadeTransition ft = new FadeTransition(Duration.millis(1500));
-        ft.setNode(node);
-        ft.setFromValue(0.1);
-        ft.setToValue(1);
-        ft.setCycleCount(1);
-        ft.setAutoReverse(false);
-        ft.play();
-		
+		HomePageController.getInstance().createPage(CarInfo, "/FXML/HOME.fxml");
 		
 	}
 
 	
-      public void createPage() {
-		
-		try {
-			CarInfo = FXMLLoader.load(getClass().getResource("/FXML/CarInfo.fxml"));
-			setNode(CarInfo);
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-	}
-      
-     @FXML
-     public void altoAction(ActionEvent e)
-     {
-    	 System.out.println("Hii");
-    	 setNode(CarInfo);
-     }
+	
+   
       
 	
 }
